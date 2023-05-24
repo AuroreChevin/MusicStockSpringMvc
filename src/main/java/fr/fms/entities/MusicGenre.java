@@ -23,7 +23,7 @@ public class MusicGenre {
 	private Long id;
 	@NonNull
 	private String name;
-	@ToString.Exclude
+	
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "musicGenre")
 	private Collection<Album> albums;
 }

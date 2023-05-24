@@ -16,6 +16,7 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 	AlbumRepository albumRepository;
 	@Autowired
 	MusicGenreRepository musicGenreRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringMusicStockMvcApplication.class, args);
 	}
@@ -25,6 +26,7 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 		//generateAlbums();
 		albumRepository.findAll().stream().forEach(System.out::println);
 		musicGenreRepository.findAll().stream().forEach(System.out::println);
+		
 		//MusicGenre mg = new MusicGenre("math core");
 		//System.out.println(mg.getName());
 		//Album alb = new Album("Tocsin", "Year of no light", 2013, 12, mg);

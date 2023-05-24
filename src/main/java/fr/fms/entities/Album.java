@@ -16,7 +16,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 @Entity
-@Data @NoArgsConstructor @RequiredArgsConstructor @ToString
+@Data @NoArgsConstructor @RequiredArgsConstructor @AllArgsConstructor @ToString
 public class Album implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
