@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"fr.fms.entities","l":"Album"},{"p":"fr.fms.web","l":"AlbumController"},{"p":"fr.fms.dao","l":"AlbumRepository"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"fr.fms.entities","l":"MusicGenre"},{"p":"fr.fms.dao","l":"MusicGenreRepository"},{"p":"fr.fms","l":"SpringMusicStockMvcApplication"}];updateSearchResults();
