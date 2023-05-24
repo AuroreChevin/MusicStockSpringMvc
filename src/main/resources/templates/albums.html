@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymleaf.org">
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Insert title here</title>
 	</head>
 	<body> 
-	Tout est ok !!
+		<table>
+			<tr>
+				<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Année de sortie</th><th>Prix</th><th>Genre musical</th>
+			</tr>
+			<tr th:each="a:${listAlbums}">
+				<td th:text="${a.id}"></td>
+				<td th:text="${a.albumName}"></td>
+				<td th:text="${a.bandName}"></td>
+				<td th:text="${a.releaseYear}"></td>
+				<td th:text="${a.price}"></td>
+				
+				<td th:text="${a.musicGenre.name}"></td>
+			</tr>
+		</table>
 	</body>
 </html>
