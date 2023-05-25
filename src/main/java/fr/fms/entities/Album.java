@@ -25,6 +25,7 @@ public class Album implements Serializable{
 	private String albumName;
 	@NonNull
 	private String bandName;
+	
 	@NonNull
 	private int releaseYear;
 	@NonNull
