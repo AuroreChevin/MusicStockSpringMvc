@@ -9,36 +9,45 @@
 	<body>
 	<div layout:fragment="content">
 		<div class ="container">
-			<h4>Liste des albums</h4>
-			<form th:action="@{/index}" method="get">
-				<label>Keyword</label>
-				<input type="text" name="keyword" th:value="${keyword}">
-				<button type="submit" class="btn btn-success">Search</button>
-			</form>
-				<table class = "table table-striped">
-					<thead class="bg-success">
-						<tr>
-							<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Annee de sortie</th><th>Prix</th>
-						</tr>
-					</thead>
-						<tbody>
-							<tr th:each="a:${listAlbums}">
-								<td th:text="${a.id}"></td>
-								<td th:text="${a.albumName}"></td>	
-								<td th:text="${a.bandName}"></td>
-								<td th:text="${a.releaseYear}"></td>
-								<td th:text="${a.price}"></td>
-								<td><a class="btn btn-danger" th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Delete</a>
-								</td>
-							</tr>
-						</tbody>
-				</table>
-				<ul class= "nav nav-pills">
-					<li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
-						<a th:href="@{/index(page=${status.index}, keyword=${keyword})}" th:text="${status.index}+1"></a>
-					</li>
-				</ul>		
+			<ul class="nav nav-pills nav-fill" >
+			  <li class="nav-item" th:each="a:${listMusicGenres}">
+			  <a class="nav-link" th:href="@{/albumByMusicGenre(musicGenreId=${a.id}, page=${currentPage})}" th:text="${a.name}"></a>
+			  
+			</ul>
+			<div class="card">
+				<div class="card-header">Liste des albums</div>
+					<div class="card-body">
+						<form th:action="@{/index}" method="get">
+							<label>Keyword</label>
+							<input type="text" name="keyword" th:value="${keyword}">
+							<button type="submit" class="btn btn-success">Search</button>
+						</form>
+						<table class = "table table-striped">
+							<thead class="bg-success text-white">
+								<tr>
+									<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Annee de sortie</th><th>Prix</th>
+								</tr>
+							</thead>
+								<tbody>
+									<tr th:each="a:${listAlbums}">
+										<td th:text="${a.id}"></td>
+										<td th:text="${a.albumName}"></td>	
+										<td th:text="${a.bandName}"></td>
+										<td th:text="${a.releaseYear}"></td>
+										<td th:text="${a.price}"></td>
+										<td><a class="btn btn-danger" th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Delete</a>
+										</td>
+									</tr>
+								</tbody>
+						</table>							
+						<ul class= "nav nav-pills">
+							<li class="nav-item" th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+								<a class="nav-link" th:href="@{/index(page=${status.index}, keyword=${keyword})}" th:text="${status.index}+1"></a>
+							</li>
+						</ul>							
+					</div>
+				</div>		
+			</div>
 		</div>
-	</div>
 	</body>
 </html>

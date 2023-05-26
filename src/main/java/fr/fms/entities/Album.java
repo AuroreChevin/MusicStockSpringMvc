@@ -32,7 +32,6 @@ public class Album implements Serializable{
 	@NotNull
 	@Size(min=1,max=50)
 	private String bandName;
-	
 	@NonNull
 	@DecimalMin("1960")
 	private int releaseYear;

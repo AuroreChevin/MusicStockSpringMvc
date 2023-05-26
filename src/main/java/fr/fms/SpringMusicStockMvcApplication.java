@@ -24,9 +24,9 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		generateAlbums();
-		albumRepository.findAll().stream().forEach(System.out::println);
-		musicGenreRepository.findAll().stream().forEach(System.out::println);
-		
+		//albumRepository.findAll().stream().forEach(System.out::println);
+		//musicGenreRepository.findAll().stream().forEach(System.out::println);
+		//System.out.println(albumRepository.findByMusicGenreId((long)2));
 		//MusicGenre mg = new MusicGenre("math core");
 		//System.out.println(mg.getName());
 		//Album alb = new Album("Tocsin", "Year of no light", 2013, 12, mg);
