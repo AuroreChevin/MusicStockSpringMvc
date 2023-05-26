@@ -1,20 +1,20 @@
 package fr.fms.web;
 
-import java.security.PublicKey;
-import java.util.List;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.dao.AlbumRepository;
 import fr.fms.entities.Album;
+import javassist.expr.NewArray;
 @Controller
 public class AlbumController {
 	@Autowired
@@ -35,8 +35,14 @@ public class AlbumController {
 		return "redirect:/index?page="+page+"&keyword="+keyword;
 	}
 	@GetMapping("/album")
-	public String album() {
+	public String album(Model model) {
+		model.addAttribute("album", new Album());
 		return "album";
 	}
-	
+	@PostMapping("/save")
+	public String save(Model model, @Valid Album album, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) return "album";
+		albumRepository.save(album);
+		return "redirect:/index";
+	}
 }

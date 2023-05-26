@@ -23,7 +23,7 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		//generateAlbums();
+		generateAlbums();
 		albumRepository.findAll().stream().forEach(System.out::println);
 		musicGenreRepository.findAll().stream().forEach(System.out::println);
 		
@@ -35,7 +35,7 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 	/**
 	 * Méthode qui génère les albums dans la table
 	 */
-	/*public void generateAlbums() {
+	public void generateAlbums() {
 			MusicGenre mathCore = musicGenreRepository.save(new MusicGenre("Math Core"));
 			MusicGenre sludgeMetal = musicGenreRepository.save(new MusicGenre("Sludge/Stoner Metal"));
 			MusicGenre trashMetal = musicGenreRepository.save(new MusicGenre("Trash Metal"));
@@ -59,5 +59,5 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 			albumRepository.save(new Album("Station", "Russian Circles", 2008, 19, postMetal));
 		
 		
-	}*/
+	}
 }
