@@ -20,6 +20,8 @@ import fr.fms.dao.AlbumRepository;
 import fr.fms.dao.MusicGenreRepository;
 import fr.fms.entities.Album;
 import fr.fms.entities.MusicGenre;
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 public class AlbumController {
 	@Autowired
@@ -28,7 +30,8 @@ public class AlbumController {
 	MusicGenreRepository musicGenreRepository;
 	@GetMapping("/index")
 	public String index(Model model, @RequestParam(name="page", defaultValue = "0") int page,
-									@RequestParam(name="keyword", defaultValue = "") String kw) {
+									@RequestParam(name="keyword", defaultValue = "") String kw
+									) {
 		Page<Album> albums = albumRepository.findByAlbumNameContains(kw, PageRequest.of(page, 5));
 		List<MusicGenre> musicGenres = musicGenreRepository.findAll();
 		model.addAttribute("listMusicGenres", musicGenres);
@@ -41,6 +44,7 @@ public class AlbumController {
 	@GetMapping("/delete")
 	public String delete(Long id, int page, String keyword) {
 		albumRepository.deleteById(id);
+		log.info("Supprimé");
 		return "redirect:/index?page="+page+"&keyword="+keyword;
 	}
 	@GetMapping("/album")
@@ -52,19 +56,17 @@ public class AlbumController {
 	public String save(Model model, @Valid Album album, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) return "album";
 		albumRepository.save(album);
+		log.info("Enregistré");
 		return "redirect:/index";
 	}
 	
-	@GetMapping("/albums/{musicGenreId}")
-	public String albumByMusicGenre(Model model, @RequestParam(name="page", defaultValue = "0") int page,
-									@RequestParam(name="musicGenre", defaultValue = "0") Long musicGenreId) {
-		
-		Page <Album> albumByMusicGenre = albumRepository.findByMusicGenreId(musicGenreId, PageRequest.of(page, 5));
-	
-		model.addAttribute("listAlbums", albumByMusicGenre.getContent());
-		model.addAttribute("pages", new int[albumByMusicGenre.getTotalPages()]);
-		model.addAttribute("currentPage", page);
-		
+	@GetMapping("/{musicGenreId}")
+	public String getAlbumsByMusicGenre(@PathVariable Long musicGenreId, Model model) {
+		List<MusicGenre> musicGenres = musicGenreRepository.findAll();
+		model.addAttribute("listMusicGenres", musicGenres);
+		model.addAttribute("listAlbums", albumRepository.findByMusicGenreId(musicGenreId));
+		log.info("ok");
+		System.out.println(musicGenreId);
 		return "albums";
 	}
 	

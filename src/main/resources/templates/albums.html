@@ -9,13 +9,14 @@
 	<body>
 	<div layout:fragment="content">
 		<div class ="container">
-			<ul class="nav nav-pills nav-fill" >
-			  <li class="nav-item" th:each="a:${listMusicGenres}">
-			  <a class="nav-link" th:href="@{/albumByMusicGenre(musicGenreId=${a.id}, page=${currentPage})}" th:text="${a.name}"></a>
+			<ul class="nav nav-pills nav-fill">
+			  <li class="nav-item" th:each="m:${listMusicGenres}">
+			  <a class="nav-link" th:href="@{/{musicGenreId}(musicGenreId=${m.id})}" th:text="${m.name}"></a>
 			  
 			</ul>
-			<div class="card">
-				<div class="card-header">Liste des albums</div>
+			<div class="card border-success">
+			
+				<div class="card-header bg-success text-white text-uppercase">Liste des albums</div>
 					<div class="card-body">
 						<form th:action="@{/index}" method="get">
 							<label>Keyword</label>
@@ -23,7 +24,7 @@
 							<button type="submit" class="btn btn-success">Search</button>
 						</form>
 						<table class = "table table-striped">
-							<thead class="bg-success text-white">
+							<thead >
 								<tr>
 									<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Annee de sortie</th><th>Prix</th>
 								</tr>

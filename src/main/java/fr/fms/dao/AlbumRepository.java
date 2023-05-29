@@ -11,5 +11,5 @@ import fr.fms.entities.Album;
 public interface AlbumRepository extends JpaRepository<Album, Long>{
 	
 	public Page<Album> findByAlbumNameContains(String albumName, Pageable pageable);
-	public Page<Album> findByMusicGenreId(Long musicGenreId, Pageable pageable);
+	public List<Album> findByMusicGenreId(Long musicGenreId);
 }
