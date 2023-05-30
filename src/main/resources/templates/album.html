@@ -32,7 +32,12 @@
   						<input class="form-control" type="text" name="price" th:value="${album.price}">
   						<span th:errors="${album.price}" class="text-danger"></span>
   					</div>
-  					<button type="submit" class="btn btn-success">Enregistrer</button>
+  					<div class="form-group">
+  						<label class="control-label">Genre Musical : </label>
+  						<input class="form-control" type="text" name="musicGenre" th:value="${album.musicGenre}">
+  						<span th:errors="${album.musicGenre}" class="text-danger"></span>
+  					</div>
+  					<button type="submit" class="btn btn-outline-success mt-2">Enregistrer</button>
   				</form>
   			</div>
 		</div>

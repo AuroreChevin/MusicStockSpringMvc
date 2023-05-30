@@ -9,22 +9,22 @@
 	<body>
 	<div layout:fragment="content">
 		<div class ="container">
+			
+			<div class="card border-success">
 			<ul class="nav nav-pills nav-fill">
 			  <li class="nav-item" th:each="m:${listMusicGenres}">
-			  <a class="nav-link" th:href="@{/{musicGenreId}(musicGenreId=${m.id})}" th:text="${m.name}"></a>
+			  <a class="nav-link" th:href="@{/index(musicGenreId=${m.id})}" th:text="${m.name}"></a>
 			  
 			</ul>
-			<div class="card border-success">
-			
 				<div class="card-header bg-success text-white text-uppercase">Liste des albums</div>
 					<div class="card-body">
-						<form th:action="@{/index}" method="get">
+						<form class="mb-2" th:action="@{/index}" method="get">
 							<label>Keyword</label>
 							<input type="text" name="keyword" th:value="${keyword}">
 							<button type="submit" class="btn btn-success">Search</button>
 						</form>
 						<table class = "table table-striped">
-							<thead >
+							<thead class="bg-success p-2 text-dark bg-opacity-50" >
 								<tr>
 									<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Annee de sortie</th><th>Prix</th>
 								</tr>
@@ -38,12 +38,14 @@
 										<td th:text="${a.price}"></td>
 										<td><a class="btn btn-danger" th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Delete</a>
 										</td>
+										<td><a class="btn btn-success btn-opacity-50" href="#">Edit</a>
+										</td>
 									</tr>
 								</tbody>
 						</table>							
 						<ul class= "nav nav-pills">
 							<li class="nav-item" th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
-								<a class="nav-link" th:href="@{/index(page=${status.index}, keyword=${keyword})}" th:text="${status.index}+1"></a>
+								<a class="nav-link" th:href="@{/index(page=${status.index}, keyword=${keyword}, musicGenreId=${musicGenreId})}" th:text="${status.index}+1"></a>
 							</li>
 						</ul>							
 					</div>
