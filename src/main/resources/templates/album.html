@@ -9,9 +9,10 @@
 	<body>
 		<div layout:fragment ="content">
 		<div class="card col-md-4 col-xs-8">
-  			<h5 class="card-header bg-success text-white">Ajouter un nouvel album</h5>
+  			<h5 class="card-header bg-success text-white">Album</h5>
   			<div class="card-body">
-  				<form th:action="@{/save}" method="post">
+  				<form th:action="@{/save}" method="Post">
+  				<input type="hidden" name="id" th:value="${album.id}">
   					<div class="form-group">
   						<label class="control-label">Nom de l'album : </label>
   						<input class="form-control" type="text" name="albumName" th:value="${album.albumName}">
@@ -32,12 +33,16 @@
   						<input class="form-control" type="text" name="price" th:value="${album.price}">
   						<span th:errors="${album.price}" class="text-danger"></span>
   					</div>
-  					<div class="form-group">
-  						<label class="control-label">Genre Musical : </label>
-  						<input class="form-control" type="text" name="musicGenre" th:value="${album.musicGenre}">
-  						<span th:errors="${album.musicGenre}" class="text-danger"></span>
+  					Genre musical :
+  					<select class="form-select" name="musicGenre">
+  						<option value="">Nothing selected</option>
+  						<option th:each="musicGenre:${listMusicGenres}" th:value="${musicGenre.id}" th:text="${musicGenre.name}"></option>
+  						
+  					</select>
+  					<span th:errors="${album.musicGenre.id}" class="text-danger"></span>
+					<div>	
+  					<button type="submit" class="btn btn-success mt-2">Enregistrer</button>
   					</div>
-  					<button type="submit" class="btn btn-outline-success mt-2">Enregistrer</button>
   				</form>
   			</div>
 		</div>

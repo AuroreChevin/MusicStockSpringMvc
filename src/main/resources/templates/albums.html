@@ -26,7 +26,7 @@
 						<table class = "table table-striped">
 							<thead class="bg-success p-2 text-dark bg-opacity-50" >
 								<tr>
-									<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Annee de sortie</th><th>Prix</th>
+									<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Annee de sortie</th><th>Prix</th><th>Genre Musical</th>
 								</tr>
 							</thead>
 								<tbody>
@@ -36,9 +36,10 @@
 										<td th:text="${a.bandName}"></td>
 										<td th:text="${a.releaseYear}"></td>
 										<td th:text="${a.price}"></td>
+										<td th:text="${a.musicGenre.name}"></td>
 										<td><a class="btn btn-danger" th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Delete</a>
 										</td>
-										<td><a class="btn btn-success btn-opacity-50" href="#">Edit</a>
+										<td><a class="btn btn-success btn-opacity-50" th:href="@{/edit(id=${a.id})}">Edit</a>
 										</td>
 									</tr>
 								</tbody>
