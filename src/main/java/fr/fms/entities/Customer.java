@@ -17,13 +17,21 @@ import lombok.ToString;
 
 @Entity
 @Data @NoArgsConstructor @RequiredArgsConstructor @ToString
-public class MusicGenre {
-	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class Customer {
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long customerId;
 	@NonNull
 	private String name;
+	@NonNull
+	private String surname;
+	@NonNull
+	private String email;
+	@NonNull
+	private String address;
+	@NonNull
+	private String phone;
 	@ToString.Exclude
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "musicGenre")
-	private Collection<Album> albums;
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "customer")
+	private Collection<AlbOrder> albOrders;
+	
 }

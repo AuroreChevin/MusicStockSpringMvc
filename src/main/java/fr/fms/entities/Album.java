@@ -1,6 +1,7 @@
 package fr.fms.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,11 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -38,10 +39,16 @@ public class Album implements Serializable{
 	@NonNull
 	@DecimalMin("0.1")
 	private double price;
-	@ToString.Exclude
+	
+	
+	private int quantity =1;
 	@NonNull
 	@ManyToOne
 	private MusicGenre musicGenre;
+	@ToString.Exclude
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
+	private Collection<OrderItem> orderItems;
+	
 
 	
 	
