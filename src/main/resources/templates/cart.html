@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th	="http://thymeleaf.org"
+	  xmlns:layout	="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout">
+	<head>
+		<meta charset="utf-8">
+		<title>Music Shop</title>					
+	</head>
+	<body>
+	<div layout:fragment="content">
+		<div class ="container">
+			<div class="card border-success">
+				<div class="card-header text-uppercase fs-2 fw-bold text-center">Panier</div>
+				<div class="card-body">
+					<table class ="table table-striped">
+						<thead class="bg-success p-2 text-dark bg-opacity-50" >
+							<tr>
+								<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th><th>Quantite</th><th>Prix</th>
+							</tr>
+						</thead>
+							<tbody >
+								<tr th:each="c:${cart}">
+									<td th:text="${c.id}"></td>
+									<td th:text="${c.albumName}"></td>	
+									<td th:text="${c.bandName}"></td>
+									<td th:text="${c.quantity}"></td>
+									<td th:text="${c.price*c.quantity}"></td>
+									<td><a class="btn btn-danger" th:href="@{/deleteAlbumCart(id=${c.id})}">Supprimer</a></td>
+								</tr>
+								<tr><td >Total :</td>
+									<td th:text="${total}"></td>									
+								</tr>								
+							</tbody>
+					</table>
+					<a class="btn btn-success" href="">Commander</a>
+				</div>	
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

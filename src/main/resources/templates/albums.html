@@ -8,14 +8,12 @@
 	</head>
 	<body>
 	<div layout:fragment="content">
-		<div class ="container">
-			
+		<div class ="container">			
 			<div class="card border-success">
-			<ul class="nav nav-pills nav-fill">
-			  <li class="nav-item" th:each="m:${listMusicGenres}">
-			  <a class="nav-link" th:href="@{/index(musicGenreId=${m.id})}" th:text="${m.name}"></a>
-			  
-			</ul>
+				<ul class="nav nav-pills nav-fill">
+				  <li class="nav-item" th:each="m:${listMusicGenres}">
+				  <a class="nav-link" th:href="@{/index(musicGenreId=${m.id})}" th:text="${m.name}"></a> 
+				</ul>
 				<div class="card-header bg-success text-white text-uppercase">Liste des albums</div>
 					<div class="card-body">
 						<form class="mb-2" th:action="@{/index}" method="get">
@@ -23,7 +21,7 @@
 							<input type="text" name="keyword" th:value="${keyword}">
 							<button type="submit" class="btn btn-success">Search</button>
 						</form>
-						<table class = "table table-striped">
+						<table class ="table table-striped">
 							<thead class="bg-success p-2 text-dark bg-opacity-50" >
 								<tr>
 									<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Annee de sortie</th><th>Prix</th><th>Genre Musical</th>
@@ -37,6 +35,8 @@
 										<td th:text="${a.releaseYear}"></td>
 										<td th:text="${a.price}"></td>
 										<td th:text="${a.musicGenre.name}"></td>
+										<td><a class="" th:href="@{/addCart(id=${a.id})}">Ajouter au panier</a>
+										</td>
 										<td><a class="btn btn-danger" th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Delete</a>
 										</td>
 										<td><a class="btn btn-success btn-opacity-50" th:href="@{/edit(id=${a.id})}">Edit</a>
