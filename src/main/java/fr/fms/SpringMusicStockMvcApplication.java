@@ -1,13 +1,19 @@
 package fr.fms;
-
+/**
+ * @author ChevinA
+ * 
+ */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.fms.business.IbusinessImpl;
 import fr.fms.dao.AlbumRepository;
+import fr.fms.dao.OrderItemRepository;
 import fr.fms.dao.MusicGenreRepository;
 import fr.fms.entities.Album;
+import fr.fms.entities.OrderItem;
 import fr.fms.entities.MusicGenre;
 
 @SpringBootApplication
@@ -16,7 +22,11 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 	AlbumRepository albumRepository;
 	@Autowired
 	MusicGenreRepository musicGenreRepository;
+	@Autowired
+	OrderItemRepository orderItemRepository;
 	
+	@Autowired
+	IbusinessImpl business;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringMusicStockMvcApplication.class, args);
 	}
@@ -24,6 +34,7 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		generateAlbums();
+		//generateOrderItem();
 		//albumRepository.findAll().stream().forEach(System.out::println);
 		//musicGenreRepository.findAll().stream().forEach(System.out::println);
 		//System.out.println(albumRepository.findByMusicGenreId((long)2));
@@ -31,6 +42,10 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 		//System.out.println(mg.getName());
 		//Album alb = new Album("Tocsin", "Year of no light", 2013, 12, mg);
 		//System.out.println(alb.getBandName());
+		//oderItemRepository.findAll().stream().forEach(System.out::println);
+		//orderRepository.findAll().stream().forEach(System.out::println);
+		//business.addToCart(alb);
+		//for(Album a : business.getCart()) System.out.println(a);
 	}
 	/**
 	 * Méthode qui génère les albums dans la table
@@ -59,5 +74,11 @@ public class SpringMusicStockMvcApplication implements CommandLineRunner{
 			albumRepository.save(new Album("Station", "Russian Circles", 2008, 19, postMetal));
 		
 		
+	}
+	public void generateOrderItem() {
+		MusicGenre postMetal = musicGenreRepository.save(new MusicGenre("Post Metal"));
+		Album alb =albumRepository.save(new Album("Station", "Russian Circles", 2008, 19, postMetal));
+		
+		//orderItemRepository.save(new OrderItem(alb,0,0));
 	}
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th	="http://thymeleaf.org"
+	  xmlns:layout	="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout">
+	<head>
+		<meta charset="utf-8">
+		<title>Commande</title>
+	</head>
+	<body>
+		<div layout:fragment ="content">
+		<div class="text-uppercase fs-4 fw-bold text-center">	
+  			Vous êtes bien enregistré !
+  		</div>
+  		<div class="card border-success col-md-4 col-xs-8 mx-auto">
+				<div class="card-header bg-success text-white text-uppercase">Récapitulatif de la commande</div>
+					<div class="card-body">
+						<ul >
+				  <li>
+				  </li>
+				  <li >
+				  </li>
+				  <li >
+				  </li>
+				  <li >
+				  </li>
+				  <li >Total :
+				  </li>
+				</ul>
+						<a class="btn btn-success" th:href="@{/saveOrder}">Valider la commande</a>						
+					</div>
+		</div>
+		</div>
+	</body>
+</html>

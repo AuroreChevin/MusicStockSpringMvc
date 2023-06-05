@@ -12,19 +12,20 @@
 			<div class="card border-success">
 				<ul class="nav nav-pills nav-fill">
 				  <li class="nav-item" th:each="m:${listMusicGenres}">
-				  <a class="nav-link" th:href="@{/index(musicGenreId=${m.id})}" th:text="${m.name}"></a> 
+				  	<a class="nav-link" th:href="@{/index(musicGenreId=${m.id})}" th:text="${m.name}"></a>
+				  </li> 
 				</ul>
 				<div class="card-header bg-success text-white text-uppercase">Liste des albums</div>
 					<div class="card-body">
 						<form class="mb-2" th:action="@{/index}" method="get">
-							<label>Keyword</label>
+							<label>Mot-clé</label>
 							<input type="text" name="keyword" th:value="${keyword}">
-							<button type="submit" class="btn btn-success">Search</button>
+							<button type="submit" class="btn btn-success">Rechercher</button>
 						</form>
 						<table class ="table table-striped">
 							<thead class="bg-success p-2 text-dark bg-opacity-50" >
 								<tr>
-									<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Annee de sortie</th><th>Prix</th><th>Genre Musical</th>
+									<th>Id</th><th>Titre de l'album</th><th>Nom du groupe</th> <th>Année de sortie</th><th>Prix</th><th>Genre Musical</th>
 								</tr>
 							</thead>
 								<tbody>

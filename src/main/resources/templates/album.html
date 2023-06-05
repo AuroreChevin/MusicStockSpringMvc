@@ -4,11 +4,11 @@
 	  layout:decorate="layout">
 	<head>
 		<meta charset="utf-8">
-		<title>Ajout d'un album</title>
+		<title>Album</title>
 	</head>
 	<body>
 		<div layout:fragment ="content">
-		<div class="card col-md-4 col-xs-8">
+		<div class="card col-md-4 col-xs-8 mx-auto">
   			<h5 class="card-header bg-success text-white">Album</h5>
   			<div class="card-body">
   				<form th:action="@{/save}" method="Post">
@@ -24,7 +24,7 @@
   						<span th:errors="${album.bandName}" class="text-danger"></span>
   					</div>
   					<div class="form-group">
-  						<label class="control-label">Annee de sortie : </label>
+  						<label class="control-label">Année de sortie : </label>
   						<input class="form-control" type="text" name="releaseYear" th:value="${album.releaseYear}">
   						<span th:errors="${album.releaseYear}" class="text-danger"></span>
   					</div>
@@ -35,11 +35,11 @@
   					</div>
   					Genre musical :
   					<select class="form-select" name="musicGenre">
-  						<option value="">Nothing selected</option>
+  						<option value="">Sélectionner</option>
   						<option th:each="musicGenre:${listMusicGenres}" th:value="${musicGenre.id}" th:text="${musicGenre.name}"></option>
   						
   					</select>
-  					<span th:errors="${album.musicGenre.id}" class="text-danger"></span>
+  					<span th:errors="${album.musicGenre.name}" class="text-danger"></span>
 					<div>	
   					<button type="submit" class="btn btn-success mt-2">Enregistrer</button>
   					</div>

@@ -43,6 +43,7 @@ public class Album implements Serializable{
 	
 	private int quantity =1;
 	@NonNull
+	@NotNull
 	@ManyToOne
 	private MusicGenre musicGenre;
 	@ToString.Exclude
